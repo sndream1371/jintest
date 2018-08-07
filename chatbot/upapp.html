@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>UPAPP API Call</title>
+      <script type = "text/javascript"
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+      </script>
+
+      <script type = "text/javascript" language = "javascript">
+         $(document).ready(function(){
+
+            //전체호출
+            $("#all").click(function(){
+              $(":button").each(function(index){
+                //alert("button each >");
+                $.CallingAll(index);
+              });
+
+              return false;
+            });
+
+
+            var httpmethod;
+
+            ////doc loading timie init data
+            $("#URI").val("http://172.30.202.208:39011/restfc"); //defalut set URL
+            httpmethod="GET"; //defalut set URL
+
+            $("#srv_local").click(function(){
+              var url = $(':radio[id="srv_local"]:checked').val();
+              //alert("radio >"+ url);
+              $("#URI").val(url);
+            });
+
+            $("#srv_dev").click(function(){
+              var url = $(':radio[id="srv_dev"]:checked').val();
+              $("#URI").val(url);
+            });
+
+            $("#srv_home_dev").click(function(){
+              var url = $(':radio[id="srv_home_dev"]:checked').val();
+              $("#URI").val(url);
+            });
+
+			$("#srv_home_prod").click(function(){
+              var url = $(':radio[id="srv_home_prod"]:checked').val();
+              $("#URI").val(url);
+            });
+
+
+            $("#httpget").click(function(){ httpmethod = $(':radio[id="httpget"]:checked').val(); });
+            $("#httppost").click(function(){ httpmethod = $(':radio[id="httppost"]:checked').val(); });
+
+
+            //$("#driver").click(function(event){
+            var domain="";
+
+            $("#manner_call_payment_info").click(function(ent){ domain = $("#manner_call_payment_info").val(); 	change_background_color("0"); });
+            $("#monthly_charge_claim").click(function(ent){ domain = $("#monthly_charge_claim").val(); 	change_background_color("1"); });
+            $("#bill_view").click(function(ent){ domain = $("#bill_view").val(); 	change_background_color("2"); });
+            $("#charge_overdue").click(function(ent){ domain = $("#charge_overdue").val(); 	change_background_color("3"); });
+            $("#choice_terms").click(function(ent){ domain = $("#choice_terms").val(); 	change_background_color("4"); });
+            $("#phone_opening_date").click(function(ent){ domain = $("#phone_opening_date").val(); 	change_background_color("5"); });
+            $("#installment_remain").click(function(ent){ domain = $("#installment_remain").val(); 	change_background_color("6"); });
+            $("#lte_plus_commit_discount").click(function(ent){ domain = $("#lte_plus_commit_discount").val(); 	change_background_color("7"); });
+            $("#my_chok_category").click(function(ent){ domain = $("#my_chok_category").val(); 	change_background_color("8"); });
+            $("#small_payment_block").click(function(ent){ domain = $("#small_payment_block").val(); 	change_background_color("9"); });
+            $("#roaming_charge_exists").click(function(ent){ domain = $("#roaming_charge_exists").val(); 	change_background_color("10"); });
+            $("#group_stop_history").click(function(ent){ domain = $("#group_stop_history").val(); 	change_background_color("11"); });
+            $("#stop_status").click(function(ent){ domain = $("#stop_status").val(); 	change_background_color("12"); });
+            $("#service_signup").click(function(ent){ domain = $("#service_signup").val(); 	change_background_color("13"); });
+            $("#google_small_pay_block").click(function(ent){ domain = $("#google_small_pay_block").val(); 	change_background_color("14"); });
+            $("#small_payment_exist").click(function(ent){ domain = $("#small_payment_exist").val(); 	change_background_color("15"); });
+            $("#google_small_pay_exist").click(function(ent){ domain = $("#google_small_pay_exist").val(); 	change_background_color("16"); });
+            $("#membercard_issuing_signup").click(function(ent){ domain = $("#membercard_issuing_signup").val(); 	change_background_color("17"); });
+            $("#free_qty_disp").click(function(ent){ domain = $("#free_qty_disp").val(); 	change_background_color("18"); });
+            $("#small_payment_use_consent").click(function(ent){ domain = $("#small_payment_use_consent").val(); 	change_background_color("19"); });
+            $("#hldy_yn").click(function(ent){ domain = $("#hldy_yn").val(); 	change_background_color("20"); });
+            $("#prod_svc_cntc").click(function(ent){ domain = $("#prod_svc_cntc").val(); 	change_background_color("21"); });
+            $("#prod_svc_cntc_plan").click(function(ent){ domain = $("#prod_svc_cntc_plan").val(); 	change_background_color("22"); });
+            $("#hotbill_amount").click(function(ent){ domain = $("#hotbill_amount").val(); 	change_background_color("23"); });
+            $("#small_payment_limit").click(function(ent){ domain = $("#small_payment_limit").val(); 	change_background_color("24"); });
+            $("#newly_terminating_funding").click(function(ent){ domain = $("#newly_terminating_funding").val(); 	change_background_color("25"); });
+            $("#membership_grade").click(function(ent){ domain = $("#membership_grade").val(); 	change_background_color("26"); });
+            $("#prod_svc_expt_cntc").click(function(ent){ domain = $("#prod_svc_expt_cntc").val(); 	change_background_color("27"); });
+            $("#pym_mth_info").click(function(ent){ domain = $("#pym_mth_info").val(); 	change_background_color("28"); });
+            $("#bill_acnt_type").click(function(ent){ domain = $("#bill_acnt_type").val(); 	change_background_color("29"); });
+
+            $("#device_subsidy_info").click(function(ent){ domain = $("#device_subsidy_info").val(); 	change_background_color("30"); });
+			$("#recommed_payment_info").click(function(ent){ domain = $("#recommed_payment_info").val(); 	change_background_color("31"); });
+			$("#usage_average_info").click(function(ent){ domain = $("#usage_average_info").val(); 	change_background_color("32"); });
+			$("#account_info").click(function(ent){ domain = $("#account_info").val(); 	change_background_color("33"); });
+			$("#stop_reason_info").click(function(ent){ domain = $("#stop_reason_info").val(); 	change_background_color("34"); });
+			$("#account_balance_info").click(function(ent){ domain = $("#account_balance_info").val(); 	change_background_color("35"); });
+			$("#remaining_data_info").click(function(ent){ domain = $("#remaining_data_info").val(); 	change_background_color("36"); });
+			$("#advance_small_payment_limit_info").click(function(ent){ domain = $("#advance_small_payment_limit_info").val(); 	change_background_color("37"); });
+			$("#store_lmt").click(function(ent){ domain = $("#store_lmt").val(); 	change_background_color("38"); });
+			$("#store_prepay_lmt").click(function(ent){ domain = $("#store_prepay_lmt").val(); 	change_background_color("39"); });
+			$("#device_info").click(function(ent){ domain = $("#device_info").val(); 	change_background_color("40"); });
+			$("#ring_charge_payment_info").click(function(ent){ domain = $("#ring_charge_payment_info").val(); 	change_background_color("41"); });
+			$("#ring_charge_amount_info").click(function(ent){ domain = $("#ring_charge_amount_info").val(); 	change_background_color("42"); });
+			$("#representative_agreement_info").click(function(ent){ domain = $("#representative_agreement_info").val(); 	change_background_color("43"); });
+			$("#customer_info").click(function(ent){ domain = $("#customer_info").val(); 	change_background_color("44"); });
+			$("#data_charge_info").click(function(ent){ domain = $("#data_charge_info").val(); 	change_background_color("45"); });
+			$("#data_coupon_info").click(function(ent){ domain = $("#data_coupon_info").val(); 	change_background_color("46"); });
+			$("#my_chok_history_info").click(function(ent){ domain = $("#my_chok_history_info").val(); 	change_background_color("47"); });
+			$("#small_payment_password_info").click(function(ent){ domain = $("#small_payment_password_info").val(); 	change_background_color("48"); });
+			$("#direct_shop_info").click(function(ent){ domain = $("#direct_shop_info").val(); 	change_background_color("50"); });
+			$("#bill_type_basic_date_info").click(function(ent){ domain = $("#bill_type_basic_date_info").val(); 	change_background_color("51"); });
+			$("#customer_type_info").click(function(ent){ domain = $("#customer_type_info").val(); 	change_background_color("52"); });
+			$("#price_guarantee_signup").click(function(ent){ domain = $("#price_guarantee_signup").val(); 	change_background_color("53"); });
+
+            $(":button").click(function(event){
+               var dis = '#'+domain+'_dis';
+               //alert('dis ....'+dis);
+
+               var user_id = $("#user_id").val();
+               var URI = $("#URI").val();
+               var prodCode = $("#prodCode").val();
+
+               //디버그
+               //alert("domain value >>"+domain + "\n user_id >"+user_id +"\n URI>"+URI +"\n httpmethod>"+httpmethod);
+
+			   var startTime,endTime;
+               if(httpmethod == "GET"){
+                    //alert("type...:"+httpmethod);
+                    $.ajax({
+                    //type:"GET",
+                    type:httpmethod,
+                    dataType:"text",
+                    async: false,
+                    //url:'http://172.30.202.208:39011/restfc/manner_call_payment_info?user_id=JppGb5LV6M9fNvKWprJBTdyGtyWpTP5rQZ59CqtTvZTcffqLxc5g!-704062300!1530514421709',
+                    url:URI+'/'+domain+'?user_id='+user_id,
+                    //url:URI+'/'+domain,
+                    //data:{user_id:user_id, prodCode:prodCode},
+				  beforeSend:function(){
+				    //console.log("ajax beforeSend >"+dis+" idx:"+idx);
+					$(dis).text("Loading......");
+			        startTime = new Date(); //elapse time
+				  },
+                    success:function(data) {
+                      var jsonObj = JSON.parse(data);
+                      var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+
+                      //alert( 'jsonPretty>>>>>'+jsonPretty );
+                      //var dis = '#'+domain+'_dis';
+                      //alert('dis ....'+dis);
+					  endTime = (new Date() - startTime) + "ms";
+
+                      $(dis).text(jsonPretty + endTime);
+                      $(dis).css("background-color","yellow");
+
+                      //alert('out .....>'+data);
+                      //alert('success 1>>'+data);
+                      //alert('success');
+                    },
+                    error:function(request,status,error){
+                  	$(dis).text(" | "+request.status+" | "+status+" | "+error);
+                  }
+                 });
+               }else{
+                    //alert("type...:"+httpmethod +" prodCode:"+prodCode);
+                    $.ajax({
+                    type:httpmethod,
+                    dataType:"text",
+                    url:URI+'/'+domain,
+                    data:{user_id:user_id, prodCode:prodCode},
+                    success:function(data) {
+                    var jsonObj = JSON.parse(data);
+                    var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+
+                    //alert( 'jsonPretty>>>>>'+jsonPretty );
+                    //var dis = '#'+domain+'_dis';
+                    //alert('dis ....'+dis);
+                    $(dis).text(jsonPretty);
+                    $(dis).css("background-color","yellow");
+
+                    //alert('out .....>'+data);
+                    //alert('success 1>>'+data);
+                    //alert('success');
+                    }
+                 });
+               }
+
+
+              $(document).bind("ajaxSend",function(){
+                //$("#manner_call_payment_info").text("Loading....");
+                //$(dis).text("Loading....");
+                //alert('bind....'+dis);
+              }).bind("ajaxComplete",function(){
+                //$(dis).hide();
+              });
+
+            }); //end button
+
+
+         });
+
+
+
+
+
+      function change_background_color(sel) {
+        var selTarget = "#"+sel;
+        //alert("sel Target >>"+selTarget);
+        $("th").css("background-color","white");
+      	$(selTarget).css("background-color","silver");
+      }
+
+
+	 //API All Request
+     $.CallingAll = function(idx){
+            //alert("callingall idx >"+idx);
+			var console = window.console || {log:function(){}}; //WINDOWS에서 콘솔로그찍기
+            console.log("idx :"+idx);
+
+            var httpmethod;
+
+            ////doc loading timie init data
+            //$("#URI").val("http://172.30.202.208:39011/restfc"); //defalut set URL
+            httpmethod="GET"; //defalut set URL
+
+            $("#srv_local").click(function(){
+              //alert('tete');
+              var url = $(':radio[id="srv_local"]:checked').val();
+              //alert("radio >"+ url);
+              $("#URI").val(url);
+            });
+
+            $("#srv_dev").click(function(){
+              var url = $(':radio[id="srv_dev"]:checked').val();
+              $("#URI").val(url);
+            });
+
+            $("#httpget").click(function(){ httpmethod = $(':radio[id="httpget"]:checked').val(); });
+            $("#httppost").click(function(){ httpmethod = $(':radio[id="httppost"]:checked').val(); });
+
+
+            //$("#driver").click(function(event){
+            var domain="";
+
+            if(idx == "0"){domain=$("#manner_call_payment_info").val();	change_background_color("0");};
+            if(idx == "1"){domain=$("#monthly_charge_claim").val();	change_background_color("1");};
+            if(idx == "2"){domain=$("#bill_view").val();	change_background_color("2");};
+            if(idx == "3"){domain=$("#charge_overdue").val();	change_background_color("3");};
+            if(idx == "4"){domain=$("#choice_terms").val();	change_background_color("4");};
+            if(idx == "5"){domain=$("#phone_opening_date").val();	change_background_color("5");};
+            if(idx == "6"){domain=$("#installment_remain").val();	change_background_color("6");};
+            if(idx == "7"){domain=$("#lte_plus_commit_discount").val();	change_background_color("7");};
+            if(idx == "8"){domain=$("#my_chok_category").val();	change_background_color("8");};
+            if(idx == "9"){domain=$("#small_payment_block").val();	change_background_color("9");};
+            if(idx == "10"){domain=$("#roaming_charge_exists").val();	change_background_color("10");};
+            if(idx == "11"){domain=$("#group_stop_history").val();	change_background_color("11");};
+            if(idx == "12"){domain=$("#stop_status").val();	change_background_color("12");};
+            if(idx == "13"){domain=$("#service_signup").val();	change_background_color("13");};
+            if(idx == "14"){domain=$("#google_small_pay_block").val();	change_background_color("14");};
+            if(idx == "15"){domain=$("#small_payment_exist").val();	change_background_color("15");};
+            if(idx == "16"){domain=$("#google_small_pay_exist").val();	change_background_color("16");};
+            if(idx == "17"){domain=$("#membercard_issuing_signup").val();	change_background_color("17");};
+            if(idx == "18"){domain=$("#free_qty_disp").val();	change_background_color("18");};
+            if(idx == "19"){domain=$("#small_payment_use_consent").val();	change_background_color("19");};
+            if(idx == "20"){domain=$("#hldy_yn").val();	change_background_color("20");};
+            if(idx == "21"){domain=$("#prod_svc_cntc").val();	change_background_color("21");};
+            if(idx == "22"){domain=$("#prod_svc_cntc_plan").val();	change_background_color("22");};
+            if(idx == "23"){domain=$("#hotbill_amount").val();	change_background_color("23");};
+            if(idx == "24"){domain=$("#small_payment_limit").val();	change_background_color("24");};
+            if(idx == "25"){domain=$("#newly_terminating_funding").val();	change_background_color("25");};
+            if(idx == "26"){domain=$("#membership_grade").val();	change_background_color("26");};
+            if(idx == "27"){domain=$("#prod_svc_expt_cntc").val();	change_background_color("27");};
+            if(idx == "28"){domain=$("#pym_mth_info").val();	change_background_color("28");};
+            if(idx == "29"){domain=$("#bill_acnt_type").val();	change_background_color("29");};
+
+            if(idx == "30"){domain=$("#device_subsidy_info").val();	change_background_color("30");};
+            if(idx == "31"){domain=$("#recommed_payment_info").val();	change_background_color("31");};
+            if(idx == "32"){domain=$("#usage_average_info").val();	change_background_color("32");};
+            if(idx == "33"){domain=$("#account_info").val();	change_background_color("33");};
+            if(idx == "34"){domain=$("#stop_reason_info").val();	change_background_color("34");};
+            if(idx == "35"){domain=$("#account_balance_info").val();	change_background_color("35");};
+            if(idx == "36"){domain=$("#remaining_data_info").val();	change_background_color("36");};
+            if(idx == "37"){domain=$("#advance_small_payment_limit_info").val();	change_background_color("37");};
+            if(idx == "38"){domain=$("#store_lmt").val();	change_background_color("38");};
+            if(idx == "39"){domain=$("#store_prepay_lmt").val();	change_background_color("39");};
+            if(idx == "40"){domain=$("#device_info").val();	change_background_color("40");};
+            if(idx == "41"){domain=$("#ring_charge_payment_info").val();	change_background_color("41");};
+            if(idx == "42"){domain=$("#ring_charge_amount_info").val();	change_background_color("42");};
+            if(idx == "43"){domain=$("#representative_agreement_info").val();	change_background_color("43");};
+            if(idx == "44"){domain=$("#customer_info").val();	change_background_color("44");};
+            if(idx == "45"){domain=$("#data_charge_info").val();	change_background_color("45");};
+            if(idx == "46"){domain=$("#data_coupon_info").val();	change_background_color("46");};
+            if(idx == "47"){domain=$("#my_chok_history_info").val();	change_background_color("47");};
+            if(idx == "48"){domain=$("#small_payment_password_info").val();	change_background_color("48");};
+            if(idx == "50"){domain=$("#direct_shop_info").val();	change_background_color("50");};
+            if(idx == "51"){domain=$("#bill_type_basic_date_info").val();	change_background_color("51");};
+            if(idx == "52"){domain=$("#customer_type_info").val();	change_background_color("52");};
+            if(idx == "53"){domain=$("#price_guarantee_signup").val();	change_background_color("53");};
+
+
+             var user_id = $("#user_id").val();
+             var URI = $("#URI").val();
+             var prodCode = $("#prodCode").val();
+
+             //디버그
+             //alert("domain value >>"+domain + "\n user_id >"+user_id +"\n URI>"+URI +"\n httpmethod>"+httpmethod);
+
+             var dis = '#'+domain+'_dis';
+             //alert('after idx dis ....>'+dis);
+
+/*
+             //$(document).bind("ajaxSend",function(){
+             $(document).on("ajaxSend",function(){  //bind 나 on 기능 비슷한 최신버젼은 on을 사용함
+			   console.log("ajaxSend on dis >"+dis+" idx:"+idx);
+               //$(dis).text("Loading....");
+               //alert('bind dis ->>'+dis);
+             }).on("ajaxComplete",function(){
+			   console.log("ajaxComplete dis >"+dis);
+                //$(dis).hide();
+             });
+*/
+
+			 var start = [], end=[];
+
+             if(httpmethod == "GET"){
+                  $.ajax({
+                  type:httpmethod,
+                  dataType:"text",
+                  async: true,
+                  url:URI+'/'+domain+'?user_id='+user_id,
+				  beforeSend:function(){
+				    console.log("ajax beforeSend >"+dis+" idx:"+idx);
+					$(dis).text("Loading......");
+			        start[idx] = new Date(); //elapse time
+				  },
+                  success:function(data){
+				    //console.log("ajax success "+idx);
+                    var jsonObj = JSON.parse(data);
+                    var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+
+					end[idx] = (new Date() - start[idx]) + "ms";
+					console.log("dis >"+dis+" elapse idx >"+idx+" time >"+end[idx]);
+                    $(dis).html(jsonPretty + end[idx]);
+					//$(dis).html(end[idx]);
+                    $(dis).css("background-color","#ceff99");
+                  },
+                  error:function(request,status,error){
+                  	//var dis = '#'+domain+'_dis';
+                  	$(dis).text(" | "+request.status+" | "+status+" | "+error);
+                  },
+                  complete:function(){
+				    //console.log("ajax complete "+idx);
+                    //alert("complete...");
+					//$(dis).hide();
+                  }
+               });
+             }else{
+                  //alert("type...:"+httpmethod +" prodCode:"+prodCode);
+                  $.ajax({
+                  type:httpmethod,
+                  dataType:"text",
+                  url:URI+'/'+domain,
+                  data:{user_id:user_id, prodCode:prodCode},
+                  success:function(data) {
+                  var jsonObj = JSON.parse(data);
+                  var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+
+                  $(dis).text(jsonPretty);
+                  $(dis).css("background-color","yellow");
+                  }
+               });
+             }
+
+
+
+     }
+
+
+
+
+		setTimeout(function() {
+		  console.log("FINISH: " + new Date())
+		  console.log("ELAPSED MS: " + (new Date() -start) + "ms")
+		  console.log("ELAPSED MIN: " + ((new Date()-start)/1000/60) + " min")
+		}, 100)
+
+      </script>
+
+      <style>
+        table{ width:100%; }
+        th{ border:1px solid #444444; text-align:left;}
+        #service_signup {background-color:yellow;}
+      </style>
+   </head>
+
+   <body>
+
+     <div>
+	   <p>
+               1)로컬(localhost):<input name=srvSelect id="srv_local" type=radio value="http://127.0.0.1:7001/restfc" /> ,
+               2)고객센터 개발:<input name=srvSelect  id="srv_dev" type=radio value="http://172.30.202.208:39011/restfc" checked /> ,
+			   3)고객센터 운영(단비):<input name=srvSelect  id="srv_home_dev" type=radio value="http://172.30.113.76:39011/rest" />
+               4)고객센터 운영(마인즈랩):<input name=srvSelect  id="srv_home_prod" type=radio value="http://172.30.113.76:39011/restfc" />
+	   </p>
+       <p>URI : <input id="URI" type=text size=80 /> </p>
+
+       <p>HTTP Request Method : 1)GET:<input name=httpmth type=radio id="httpget" value="GET" checked /> 2)POST:<input name=httpmth type=radio id="httppost" value="POST" /></p>
+
+       <p>user_id : <input id="user_id" type=text size=100 /> </p>
+       <p>서비스가입여부 prodCode : <input id="prodCode" type=text size=10 /> </p>
+     </div>
+
+
+     <table>
+      <caption>UPAPP fccb API</caption>
+      <caption><input type="button" id="all" value="Domain Requet ALL"/></caption>
+
+      <thead>
+        <tr>
+          <th>Domains</th>
+          <th>Response from API</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th width=35% id="0"> 매너콜 종속요금제 여부 조회 <input type = "button" id = "manner_call_payment_info" value = "manner_call_payment_info" /> </th>
+          <td width=65% > <pre id = "manner_call_payment_info_dis" /> </td>
+        </tr>
+
+          <tr><th id="1" class="test">	당월요금청구여부 조회	<input type="button"id="monthly_charge_claim" value="monthly_charge_claim"/> <td> <pre id = "monthly_charge_claim_dis" /> </td></th></tr>
+          <tr><th id="2">	청구서 및 청구요금 조회	<input type="button"id="bill_view" value="bill_view"/> <td> <pre id = "bill_view_dis" /> </td></th></tr>
+          <tr><th id="3">	연체 여부 조회	<input type="button"id="charge_overdue" value="charge_overdue"/><td> <pre id = "charge_overdue_dis" /> </th></tr>
+          <tr><th id="4">	선택약정 가입여부 조회	<input type="button"id="choice_terms" value="choice_terms"/><td> <pre id = "choice_terms_dis" /> </th></tr>
+          <tr><th id="5">	개통일자 조회	<input type="button"id="phone_opening_date" value="phone_opening_date"/><td> <pre id = "phone_opening_date_dis" /> </th></tr>
+          <tr><th id="6">	할부잔여여부 조회	<input type="button"id="installment_remain" value="installment_remain"/><td> <pre id = "installment_remain_dis" /> </th></tr>
+          <tr><th id="7">	LTS플러스약정할인상태 조회	<input type="button"id="lte_plus_commit_discount" value="lte_plus_commit_discount"/><td> <pre id = "lte_plus_commit_discount_dis" /> </th></tr>
+          <tr><th id="8">	나만의콕카테고리 조회	<input type="button"id="my_chok_category" value="my_chok_category"/><td> <pre id = "my_chok_category_dis" /> </th></tr>
+          <tr><th id="9">	소액결제 차단 상태 조회	<input type="button"id="small_payment_block" value="small_payment_block"/><td> <pre id = "small_payment_block_dis" /> </th></tr>
+          <tr><th id="10">	로밍요금 존재 여부	<input type="button"id="roaming_charge_exists" value="roaming_charge_exists"/><td> <pre id = "roaming_charge_exists_dis" /> </th></tr>
+          <tr><th id="11">	군정지 이력 조회	<input type="button"id="group_stop_history" value="group_stop_history"/><td> <pre id = "group_stop_history_dis" /> </th></tr>
+          <tr><th id="12">	정지상태 조회	<input type="button"id="stop_status" value="stop_status"/><td> <pre id = "stop_status_dis" /> </th></tr>
+          <tr><th id="13">	서비스 가입여부 조회	<input type="button"id="service_signup" value="service_signup"/><td> <pre id = "service_signup_dis" /> </th></tr>
+          <tr><th id="14">	구글 소액결제 차단 상태 조회	<input type="button"id="google_small_pay_block" value="google_small_pay_block"/><td> <pre id = "google_small_pay_block_dis" /> </th></tr>
+          <tr><th id="15">	소액결제 요금 존재 여부 조회	<input type="button"id="small_payment_exist" value="small_payment_exist"/><td> <pre id = "small_payment_exist_dis" /> </th></tr>
+          <tr><th id="16">	소액결제 구글요금 존재 여부 조회	<input type="button"id="google_small_pay_exist" value="google_small_pay_exist"/><td> <pre id = "google_small_pay_exist_dis" /> </th></tr>
+          <tr><th id="17">	멤버십카드 발급여부 조회	<input type="button"id="membercard_issuing_signup" value="membercard_issuing_signup"/><td> <pre id = "membercard_issuing_signup_dis" /> </th></tr>
+          <tr><th id="18">	기본제공량 지원여부 조회	<input type="button"id="free_qty_disp" value="free_qty_disp"/><td> <pre id = "free_qty_disp_dis" /> </th></tr>
+          <tr><th id="19">	소액결제 이용동의여부 조회	<input type="button"id="small_payment_use_consent" value="small_payment_use_consent"/><td> <pre id = "small_payment_use_consent_dis" /> </th></tr>
+          <tr><th id="20">	법정 공휴일 여부 조회	<input type="button"id="hldy_yn" value="hldy_yn"/><td> <pre id = "hldy_yn_dis" /> </th></tr>
+          <tr><th id="21">	가입상품조회	<input type="button"id="prod_svc_cntc" value="prod_svc_cntc"/><td> <pre id = "prod_svc_cntc_dis" /> </th></tr>
+          <tr><th id="22">	가입상품조회(모바일070)	<input type="button"id="prod_svc_cntc_plan" value="prod_svc_cntc_plan"/><td> <pre id = "prod_svc_cntc_plan_dis" /> </th></tr>
+          <tr><th id="23">	실시간요금조회	<input type="button"id="hotbill_amount" value="hotbill_amount"/><td> <pre id = "hotbill_amount_dis" /> </th></tr>
+          <tr><th id="24">	소액결제한도조회	<input type="button"id="small_payment_limit" value="small_payment_limit"/><td> <pre id = "small_payment_limit_dis" /> </th></tr>
+          <tr><th id="25">	신규단말지원금 조회	<input type="button"id="newly_terminating_funding" value="newly_terminating_funding"/><td> <pre id = "newly_terminating_funding_dis" /> </th></tr>
+          <tr><th id="26">	멤버십 등급조회	<input type="button"id="membership_grade" value="membership_grade"/><td> <pre id = "membership_grade_dis" /> </th></tr>
+          <tr><th id="27">	가입상품조회(IoT 미포함)	<input type="button"id="prod_svc_expt_cntc" value="prod_svc_expt_cntc"/><td> <pre id = "prod_svc_expt_cntc_dis" /> </th></tr>
+          <tr><th id="28">	납부방법 조회	<input type="button"id="pym_mth_info" value="pym_mth_info"/><td> <pre id = "pym_mth_info_dis" /> </th></tr>
+          <tr><th id="29">	청구유형 조회	<input type="button"id="bill_acnt_type" value="bill_acnt_type"/><td> <pre id = "bill_acnt_type_dis" /> </th></tr>
+          <tr><th id="30">	단말보조할인 조회	<input type="button"id="device_subsidy_info" value="device_subsidy_info"/><td> <pre id = "device_subsidy_info_dis" /> </th></tr>
+          <tr><th id="31">	추천요금제 조회	<input type="button"id="recommed_payment_info" value="recommed_payment_info"/><td> <pre id = "recommed_payment_info_dis" /> </th></tr>
+          <tr><th id="32">	3개월평균사용량 여부 조회	<input type="button"id="usage_average_info" value="usage_average_info"/><td> <pre id = "usage_average_info_dis" /> </th></tr>
+          <tr><th id="33">	입금전용계좌 조회	<input type="button"id="account_info" value="account_info"/><td> <pre id = "account_info_dis" /> </th></tr>
+          <tr><th id="34">	일시정지사유 조회	<input type="button"id="stop_reason_info" value="stop_reason_info"/><td> <pre id = "stop_reason_info_dis" /> </th></tr>
+          <tr><th id="35">	계정잔고 조회	<input type="button"id="account_balance_info" value="account_balance_info"/><td> <pre id = "account_balance_info_dis" /> </th></tr>
+          <tr><th id="36">	잔여데이터 조회	<input type="button"id="remaining_data_info" value="remaining_data_info"/><td> <pre id = "remaining_data_info_dis" /> </th></tr>
+          <tr><th id="37">	소액결제 선결제 한도 조회	<input type="button"id="advance_small_payment_limit_info" value="advance_small_payment_limit_info"/><td> <pre id = "advance_small_payment_limit_info_dis" /> </th></tr>
+          <tr><th id="38">	스토어결제 한도 조회	<input type="button"id="store_lmt" value="store_lmt"/><td> <pre id = "store_lmt_dis" /> </th></tr>
+          <tr><th id="39">	스토어결제 선결제 한도 조회	<input type="button"id="store_prepay_lmt" value="store_prepay_lmt"/><td> <pre id = "store_prepay_lmt_dis" /> </th></tr>
+          <tr><th id="40">	단말기 조회	<input type="button"id="device_info" value="device_info"/><td> <pre id = "device_info_dis" /> </th></tr>
+          <tr><th id="41">	링충전가능요금제 여부 조회	<input type="button"id="ring_charge_payment_info" value="ring_charge_payment_info"/><td> <pre id = "ring_charge_payment_info_dis" /> </th></tr>
+          <tr><th id="42">	링충전금액 조회	<input type="button"id="ring_charge_amount_info" value="ring_charge_amount_info"/><td> <pre id = "ring_charge_amount_info_dis" /> </th></tr>
+          <tr><th id="43">	법정대리인 충전 동의여부 조회	<input type="button"id="representative_agreement_info" value="representative_agreement_info"/><td> <pre id = "representative_agreement_info_dis" /> </th></tr>
+          <tr><th id="44">	고객정보 조회	<input type="button"id="customer_info" value="customer_info"/><td> <pre id = "customer_info_dis" /> </th></tr>
+          <tr><th id="45">	데이터통화료 발생여부 조회	<input type="button"id="data_charge_info" value="data_charge_info"/><td> <pre id = "data_charge_info_dis" /> </th></tr>
+          <tr><th id="46">	데이터2배쿠폰 조회	<input type="button"id="data_coupon_info" value="data_coupon_info"/><td> <pre id = "data_coupon_info_dis" /> </th></tr>
+          <tr><th id="47">	나만의콕변경 이력 조회	<input type="button"id="my_chok_history_info" value="my_chok_history_info"/><td> <pre id = "my_chok_history_info_dis" /> </th></tr>
+          <tr><th id="48">	소액결제 비밀번호 설정여부 조회	<input type="button"id="small_payment_password_info" value="small_payment_password_info"/><td> <pre id = "small_payment_password_info_dis" /> </th></tr>
+          <tr><th id="50">	직영점 조회	<input type="button"id="direct_shop_info" value="direct_shop_info"/><td> <pre id = "direct_shop_info_dis" /> </th></tr>
+          <tr><th id="51">	청구서유형반영기준일 여부 조회	<input type="button"id="bill_type_basic_date_info" value="bill_type_basic_date_info"/><td> <pre id = "bill_type_basic_date_info_dis" /> </th></tr>
+          <tr><th id="52">	고객유형 조회	<input type="button"id="customer_type_info" value="customer_type_info"/><td> <pre id = "customer_type_info_dis" /> </th></tr>
+          <tr><th id="53">	중고폰가격보장 가입여부 조회	<input type="button"id="price_guarantee_signup" value="price_guarantee_signup"/><td> <pre id = "price_guarantee_signup_dis" /> </th></tr>
+
+
+
+
+      </tbody>
+     </table>
+
+      <!--p>Click on the button to load result.html file:</p-->
+      <!--div id = "stage" style = "background-color:yellow;">
+         STAGE..........
+         aaa
+      </div-->
+
+
+
+
+   </body>
+</html>

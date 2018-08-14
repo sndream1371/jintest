@@ -4,10 +4,10 @@
       <title>Number Bassable</title>
       <meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
 
-
       <script type = "text/javascript"
          src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
       </script>
+
       <script type = "text/javascript" language = "javascript">
 		 var CNT=0;
 
@@ -44,7 +44,7 @@
 				CNT++;
 				//document.getElementById("resultBody").innerHTML = CNT;
 
-				//3占쏙옙占쏙옙 占쏙옙占쌘몌옙 占쌉뤄옙?占쏙옙占쏙옙
+				//3개의 숫자만 입력됬을때
 				if($("#in0").val().length == 3){
 				  //console.log(" >>>>>"+resultOut("in0").length );
 				  $("#resultBody").text(resultOut("in0"));
@@ -54,12 +54,12 @@
 			}
 			else
 			{
-				//document.getElementById("resultBody").innerHTML = keyID + " = 占쏙옙占쏙옙키 占싣댐옙";
+				//document.getElementById("resultBody").innerHTML = keyID + " = 숫자키 아님";
 			}
-			/* 48~57:占싹뱄옙 占쏙옙占쏙옙키 占쌘듸옙, 96~105:占쏙옙占쏙옙키占싻듸옙 占쏙옙占쏙옙키 占쌘듸옙 */
+			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
 		}
 
-		//占쏙옙占쏙옙占쏙옙 占쌉력곤옙占쏙옙  占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싹울옙 占쏙옙占쏙옙占싼댐옙.
+		//사용자 입력값과  결과값을 비교 하여 리턴한다.
 		function resultOut(inputId){
 		    var strick=0, bool=0;
 		    var finalResult = $("#resultHead").text();
@@ -102,18 +102,18 @@
 
 
      <table>
-      <caption>占쏙옙占쏙옙 占쌩깍옙 占쏙옙占쏙옙</caption>
+      <caption>숫자 야구 게임</caption>
 
       <thead>
         <tr>
-          <th>占쏙옙占쌜뱄옙튼 <button onclick="randomFunction()" >占쏙옙占쏙옙</button> </th>
-          <th>占쏙옙占쏙옙 占쏙옙占쏙옙占승곤옙 => <div id="resultHead" bgcolor="white"></div></th>
+          <th>시작버튼 <button onclick="randomFunction()" >시작</button> </th>
+          <th>결과 나오는곳 => <div id="resultHead" bgcolor="white"></div></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th width=30% id="0"> 占쌉뤄옙 <input id="in0" type=text maxlength=3 onkeyup="showKeyCode(event)"></th>
-          <th width=30% > 占쏙옙占쏙옙 <div id="resultBody" /></th>
+          <th width=30% id="0"> 입력 <input id="in0" type=text maxlength=3 onkeyup="showKeyCode(event)"></th>
+          <th width=30% > 결과 <div id="resultBody" /></th>
         </tr>
 
 

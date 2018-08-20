@@ -5,13 +5,13 @@
       <title>Number Bassable</title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-      <script type = "text/javascript"
+      <script type = "text/javascript" 
          src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
       </script>
-
+		
       <script type = "text/javascript" language = "javascript">
 		 var CNT=0;
-
+			
 		 function randomFunction() {
 		    var resultNum = (Math.random()+"1").substring(2,5);
 			var i=0;
@@ -23,35 +23,41 @@
 				}
 				i++;
 			}
-
+			
             document.getElementById("resultHead").innerHTML = resultNum;
+			$("#resultHead").css("color","white");
          }
-
+		 
 		 function charCompare(num){
 			num1 = num.substring(0,1);
 			num2 = num.substring(1,2);
 			num3 = num.substring(2,3);
 			if(num1 == num2 || num2 == num3 || num1 == num3) return true;
-
+			
 			return false;
 		 }
-
+		 
 		 function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
 
 			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) )
 			{
-				CNT++;
-				//document.getElementById("resultBody").innerHTML = CNT;
-
-				//3개의 숫자만 입력됬을때
+				
+				//3개의 숫자만 입력할경우
 				if($("#in0").val().length == 3){
 				  //console.log(" >>>>>"+resultOut("in0").length );
-				  $("#resultBody").text(resultOut("in0"));
-				  CNT=0;
-				}
+				  var resultMsg = resultOut("in0");
+				  $("#resultBody").text(resultMsg);
 
+				  if( resultMsg.indexOf("[3] Strick") >= 0){
+				    $("#myTable").css("background-color","aqua");
+				  }
+				  
+				  $("#myTable > tbody").prepend("<tr><th width=30% id='0'>("+CNT++ +")입력:"+$("#in0").val()+" <div id='historyInput' /></th><th width=30% > 결과:"+ resultOut("in0")+" <div id='historyResul' /></th></tr>");        
+				  //$("#myTable > tbody").append("<tr><th width=30% id='0'> 입력 <div id='historyInput' /></th><th width=30% > 결과:"+ resultOut("in0")+" <div id='historyResul' /></th></tr>");        
+				}
+				
 			}
 			else
 			{
@@ -59,38 +65,42 @@
 			}
 			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
 		}
-
+		
 		//사용자 입력값과  결과값을 비교 하여 리턴한다.
 		function resultOut(inputId){
 		    var strick=0, bool=0;
-		    var finalResult = $("#resultHead").text();
+		    var finalResult = $("#resultHead").text();  
 			var fnum1 = finalResult.substring(0,1);
 			var fnum2 = finalResult.substring(1,2);
 			var fnum3 = finalResult.substring(2,3);
-
-		    var comNum = $("#"+inputId).val();
+		
+		    var comNum = $("#"+inputId).val();  
 			var cnum1 = comNum.substring(0,1);
 			var cnum2 = comNum.substring(1,2);
 			var cnum3 = comNum.substring(2,3);
-
+			
 			console.log(" finalResult:"+finalResult +" comNum:"+comNum);
-
+			
 			if(fnum1 == cnum1) strick++
 			if(fnum2 == cnum2) strick++
 			if(fnum3 == cnum3) strick++
-
+			
 			if(fnum1 == cnum2 || fnum1 == cnum3) bool++
 			if(fnum2 == cnum1 || fnum2 == cnum3) bool++
 			if(fnum3 == cnum1 || fnum3 == cnum2) bool++
-
+			
 			return "["+strick+"] Strick ["+ bool + "] Bool"
 		}
-
+		 
          $(document).ready(function(){
 			console.log("---------"+$("#resultHead").text());
 		 })
+		 
+		 function gameReload() {
+            location.reload();
+         }
       </script>
-
+      
       <style>
         table{ width:60%; }
         th{ border:1px solid #444444; text-align:left;}
@@ -98,35 +108,37 @@
         #service_signup {background-color:yellow;}
       </style>
    </head>
-
+	
    <body>
-
-
-     <table>
+   
+          
+     <table id="myTable">
       <caption>숫자 야구 게임</caption>
-
+     
       <thead>
-        <tr>
-          <th>시작버튼 <button onclick="randomFunction()" >시작</button> </th>
-          <th>결과 나오는곳 => <div id="resultHead" bgcolor="white"></div></th>
+        <tr> 
+          <th><button onclick="randomFunction();">게임 시작</button> <button onclick="gameReload();">게임초기화</button></th>
+          <th><div id="resultHead"></div></th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <th width=30% id="0"> 입력 <input id="in0" type=text maxlength=3 onkeyup="showKeyCode(event)"></th>
-          <th width=30% > 결과 <div id="resultBody" /></th>
-        </tr>
+          <th width=30% > 결과: <div id="resultBody" /></th>
+        </tr>		
+      </thead>
+      <tbody>
 
 
+        
 
+          
 
       </tbody>
      </table>
+     
+   
+		
 
-
-
-
-
-
+		      
+      
    </body>
 </html>

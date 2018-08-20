@@ -40,7 +40,8 @@
 		 function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
-alert("keyId >"+keyID+ " event >>"+event + "window.event >>"+window.event);
+  
+            //alert("keyId >"+keyID+ " event >>"+event + "window.event >>"+window.event);
 			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) )
 			{
 				
@@ -52,6 +53,7 @@ alert("keyId >"+keyID+ " event >>"+event + "window.event >>"+window.event);
 
 				  if( resultMsg.indexOf("[3] Strick") >= 0){
 				    $("#myTable").css("background-color","aqua");
+					alert("Good Job - Mission complete!!!");
 				  }
 				  
 				  $("#myTable > tbody").prepend("<tr><th width=30% id='0'>("+CNT++ +")입력:"+$("#in0").val()+" <div id='historyInput' /></th><th width=30% > 결과:"+ resultOut("in0")+" <div id='historyResul' /></th></tr>");        
@@ -102,8 +104,9 @@ alert("keyId >"+keyID+ " event >>"+event + "window.event >>"+window.event);
       </script>
       
       <style>
-        table{ width:60%; }
+        table{ width: 100%; font-size: 200% }
         th{ border:1px solid #444444; text-align:left;}
+		button{ font-size: 100% }
 		#border_line { border:1px solid #444444; text-align:left;}
         #service_signup {background-color:yellow;}
       </style>

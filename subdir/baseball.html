@@ -26,6 +26,7 @@
 			
             document.getElementById("resultHead").innerHTML = resultNum;
 			$("#resultHead").css("color","white");
+			$("#resultHeadMsg").text("맞춰야할 숫자 3자리가 생성 되었습니다.");
          }
 		 
 		 function charCompare(num){
@@ -106,7 +107,8 @@
       <style>
         table{ width: 100%; font-size: 200% }
         th{ border:1px solid #444444; text-align:left;}
-		button{ font-size: 100% }
+		button{ font-size: 200% }
+		input{ font-size: 200%; width:100% }
 		#border_line { border:1px solid #444444; text-align:left;}
         #service_signup {background-color:yellow;}
       </style>
@@ -116,12 +118,12 @@
    
           
      <table id="myTable">
-      <caption>숫자 야구 게임</caption>
+      <caption>숫자 야구 Game</caption>
      
       <thead>
         <tr> 
-          <th><button onclick="randomFunction();">게임 시작</button> <button onclick="gameReload();">게임초기화</button></th>
-          <th><div id="resultHead"></div></th>
+          <th><button onclick="randomFunction();">시작</button> <button onclick="gameReload();">초기화</button></th>
+          <th><div id="resultHead"></div><div id="resultHeadMsg"></div></th>
         </tr>
         <tr>
           <th width=30% id="0"> 입력 <input id="in0" type=text maxlength=3 onkeyup="showKeyCode(event)"></th>

@@ -7,7 +7,7 @@ window.onload = function(){ //모든 HTML을 로드한뒤에 함수를 호출한
 	btn.addEventListener("click", function() {
 	  var ourRequest = new XMLHttpRequest();
 	  //ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-' + pageCounter + '.json'); //소스 개발자의 샘플 json주소
-		ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-' + pageCounter + '.json');
+		ourRequest.open('GET', 'https://sndream1371.github.io/jintest/js/example/jsonAndAjax/animals-' + pageCounter + '.json'); //진영 girhup
 	  ourRequest.onload = function() {
 		if (ourRequest.status >= 200 && ourRequest.status < 400) {
 		  var ourData = JSON.parse(ourRequest.responseText);

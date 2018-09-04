@@ -3,16 +3,16 @@
     "name": "Meowsy",
     "species" : "cat",
     "foods": {
-      "likes": ["tuna", "catnip"],
-      "dislikes": ["ham", "zucchini"]
+      "likes": ["참치", "생선뼈"],
+      "dislikes": ["쌀", "빵"]
     }
   },
   {
     "name": "Barky",
     "species" : "dog",
     "foods": {
-      "likes": ["bones", "carrots"],
-      "dislikes": ["tuna"]
+      "likes": ["뼈", "당근", "당근1", "무우", "양배추"],
+      "dislikes": ["고기"]
     }
   },
   {
@@ -23,4 +23,4 @@
       "dislikes": ["cookies"]
     }
   }
-] 
+]

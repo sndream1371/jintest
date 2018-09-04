@@ -23,4 +23,22 @@
       "dislikes": ["cookies"]
     }
   }
+  ,
+  {
+    "name": "고양이이름_01",
+    "species" : "cat",
+    "foods": {
+      "likes": ["쌀"],
+      "dislikes": ["밀가루"]
+    }
+  }
+  ,
+  {
+    "name": "고양이이름_02",
+    "species" : "cat",
+    "foods": {
+      "likes": ["바나나","식용유","꿀"],
+      "dislikes": ["도라지","된장","고추장","콜라"]
+    }
+  }
 ]

@@ -43,7 +43,7 @@
               $("#URI").val(url);
             });
 
-			$("#srv_home_prod").click(function(){
+			      $("#srv_home_prod").click(function(){
               var url = $(':radio[id="srv_home_prod"]:checked').val();
               $("#URI").val(url);
             });
@@ -52,10 +52,8 @@
             $("#httpget").click(function(){ httpmethod = $(':radio[id="httpget"]:checked').val(); });
             $("#httppost").click(function(){ httpmethod = $(':radio[id="httppost"]:checked').val(); });
 
-
             //$("#driver").click(function(event){
             var domain="";
-
             $("#manner_call_payment_info").click(function(ent){ domain = $("#manner_call_payment_info").val(); 	change_background_color("0"); });
             $("#monthly_charge_claim").click(function(ent){ domain = $("#monthly_charge_claim").val(); 	change_background_color("1"); });
             $("#bill_view").click(function(ent){ domain = $("#bill_view").val(); 	change_background_color("2"); });
@@ -86,30 +84,29 @@
             $("#prod_svc_expt_cntc").click(function(ent){ domain = $("#prod_svc_expt_cntc").val(); 	change_background_color("27"); });
             $("#pym_mth_info").click(function(ent){ domain = $("#pym_mth_info").val(); 	change_background_color("28"); });
             $("#bill_acnt_type").click(function(ent){ domain = $("#bill_acnt_type").val(); 	change_background_color("29"); });
-
             $("#device_subsidy_info").click(function(ent){ domain = $("#device_subsidy_info").val(); 	change_background_color("30"); });
-			$("#recommed_payment_info").click(function(ent){ domain = $("#recommed_payment_info").val(); 	change_background_color("31"); });
-			$("#usage_average_info").click(function(ent){ domain = $("#usage_average_info").val(); 	change_background_color("32"); });
-			$("#account_info").click(function(ent){ domain = $("#account_info").val(); 	change_background_color("33"); });
-			$("#stop_reason_info").click(function(ent){ domain = $("#stop_reason_info").val(); 	change_background_color("34"); });
-			$("#account_balance_info").click(function(ent){ domain = $("#account_balance_info").val(); 	change_background_color("35"); });
-			$("#remaining_data_info").click(function(ent){ domain = $("#remaining_data_info").val(); 	change_background_color("36"); });
-			$("#advance_small_payment_limit_info").click(function(ent){ domain = $("#advance_small_payment_limit_info").val(); 	change_background_color("37"); });
-			$("#store_lmt").click(function(ent){ domain = $("#store_lmt").val(); 	change_background_color("38"); });
-			$("#store_prepay_lmt").click(function(ent){ domain = $("#store_prepay_lmt").val(); 	change_background_color("39"); });
-			$("#device_info").click(function(ent){ domain = $("#device_info").val(); 	change_background_color("40"); });
-			$("#ring_charge_payment_info").click(function(ent){ domain = $("#ring_charge_payment_info").val(); 	change_background_color("41"); });
-			$("#ring_charge_amount_info").click(function(ent){ domain = $("#ring_charge_amount_info").val(); 	change_background_color("42"); });
-			$("#representative_agreement_info").click(function(ent){ domain = $("#representative_agreement_info").val(); 	change_background_color("43"); });
-			$("#customer_info").click(function(ent){ domain = $("#customer_info").val(); 	change_background_color("44"); });
-			$("#data_charge_info").click(function(ent){ domain = $("#data_charge_info").val(); 	change_background_color("45"); });
-			$("#data_coupon_info").click(function(ent){ domain = $("#data_coupon_info").val(); 	change_background_color("46"); });
-			$("#my_chok_history_info").click(function(ent){ domain = $("#my_chok_history_info").val(); 	change_background_color("47"); });
-			$("#small_payment_password_info").click(function(ent){ domain = $("#small_payment_password_info").val(); 	change_background_color("48"); });
-			$("#direct_shop_info").click(function(ent){ domain = $("#direct_shop_info").val(); 	change_background_color("50"); });
-			$("#bill_type_basic_date_info").click(function(ent){ domain = $("#bill_type_basic_date_info").val(); 	change_background_color("51"); });
-			$("#customer_type_info").click(function(ent){ domain = $("#customer_type_info").val(); 	change_background_color("52"); });
-			$("#price_guarantee_signup").click(function(ent){ domain = $("#price_guarantee_signup").val(); 	change_background_color("53"); });
+      			$("#recommed_payment_info").click(function(ent){ domain = $("#recommed_payment_info").val(); 	change_background_color("31"); });
+      			$("#usage_average_info").click(function(ent){ domain = $("#usage_average_info").val(); 	change_background_color("32"); });
+      			$("#account_info").click(function(ent){ domain = $("#account_info").val(); 	change_background_color("33"); });
+      			$("#stop_reason_info").click(function(ent){ domain = $("#stop_reason_info").val(); 	change_background_color("34"); });
+      			$("#account_balance_info").click(function(ent){ domain = $("#account_balance_info").val(); 	change_background_color("35"); });
+      			$("#remaining_data_info").click(function(ent){ domain = $("#remaining_data_info").val(); 	change_background_color("36"); });
+      			$("#advance_small_payment_limit_info").click(function(ent){ domain = $("#advance_small_payment_limit_info").val(); 	change_background_color("37"); });
+      			$("#store_lmt").click(function(ent){ domain = $("#store_lmt").val(); 	change_background_color("38"); });
+      			$("#store_prepay_lmt").click(function(ent){ domain = $("#store_prepay_lmt").val(); 	change_background_color("39"); });
+      			$("#device_info").click(function(ent){ domain = $("#device_info").val(); 	change_background_color("40"); });
+      			$("#ring_charge_payment_info").click(function(ent){ domain = $("#ring_charge_payment_info").val(); 	change_background_color("41"); });
+      			$("#ring_charge_amount_info").click(function(ent){ domain = $("#ring_charge_amount_info").val(); 	change_background_color("42"); });
+      			$("#representative_agreement_info").click(function(ent){ domain = $("#representative_agreement_info").val(); 	change_background_color("43"); });
+      			$("#customer_info").click(function(ent){ domain = $("#customer_info").val(); 	change_background_color("44"); });
+      			$("#data_charge_info").click(function(ent){ domain = $("#data_charge_info").val(); 	change_background_color("45"); });
+      			$("#data_coupon_info").click(function(ent){ domain = $("#data_coupon_info").val(); 	change_background_color("46"); });
+      			$("#my_chok_history_info").click(function(ent){ domain = $("#my_chok_history_info").val(); 	change_background_color("47"); });
+      			$("#small_payment_password_info").click(function(ent){ domain = $("#small_payment_password_info").val(); 	change_background_color("48"); });
+      			$("#direct_shop_info").click(function(ent){ domain = $("#direct_shop_info").val(); 	change_background_color("50"); });
+      			$("#bill_type_basic_date_info").click(function(ent){ domain = $("#bill_type_basic_date_info").val(); 	change_background_color("51"); });
+      			$("#customer_type_info").click(function(ent){ domain = $("#customer_type_info").val(); 	change_background_color("52"); });
+      			$("#price_guarantee_signup").click(function(ent){ domain = $("#price_guarantee_signup").val(); 	change_background_color("53"); });
 
             $(":button").click(function(event){
                var dis = '#'+domain+'_dis';
@@ -147,7 +144,7 @@
                       //alert( 'jsonPretty>>>>>'+jsonPretty );
                       //var dis = '#'+domain+'_dis';
                       //alert('dis ....'+dis);
-					          endTime = (new Date() - startTime) + "ms";
+					            endTime = (new Date() - startTime) + "ms";
 
                       $(dis).text(jsonPretty + endTime);
                       $(dis).css("background-color","yellow");
@@ -379,12 +376,13 @@
 
 
 
-
+    /*
 		setTimeout(function() {
 		  console.log("FINISH: " + new Date())
 		  console.log("ELAPSED MS: " + (new Date() -start) + "ms")
 		  console.log("ELAPSED MIN: " + ((new Date()-start)/1000/60) + " min")
 		}, 100)
+    */
 
       </script>
 

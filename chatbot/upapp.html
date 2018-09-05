@@ -128,17 +128,18 @@
                     $.ajax({
                     //type:"GET",
                     type:httpmethod,
-                    dataType:"text",
+                    contentType:"application;charset=utf-8"
+                    dataType:"jsonp",
                     async: false,
                     //url:'http://172.30.202.208:39011/restfc/manner_call_payment_info?user_id=JppGb5LV6M9fNvKWprJBTdyGtyWpTP5rQZ59CqtTvZTcffqLxc5g!-704062300!1530514421709',
                     url:URI+'/'+domain+'?user_id='+user_id,
                     //url:URI+'/'+domain,
                     //data:{user_id:user_id, prodCode:prodCode},
-				  beforeSend:function(){
-				    //console.log("ajax beforeSend >"+dis+" idx:"+idx);
-					$(dis).text("Loading......");
-			        startTime = new Date(); //elapse time
-				  },
+          				  beforeSend:function(){
+          				    //console.log("ajax beforeSend >"+dis+" idx:"+idx);
+          					$(dis).text("Loading......");
+          			        startTime = new Date(); //elapse time
+          				  },
                     success:function(data) {
                       var jsonObj = JSON.parse(data);
                       var jsonPretty = JSON.stringify(jsonObj, null, '\t');
@@ -146,7 +147,7 @@
                       //alert( 'jsonPretty>>>>>'+jsonPretty );
                       //var dis = '#'+domain+'_dis';
                       //alert('dis ....'+dis);
-					  endTime = (new Date() - startTime) + "ms";
+					          endTime = (new Date() - startTime) + "ms";
 
                       $(dis).text(jsonPretty + endTime);
                       $(dis).css("background-color","yellow");
@@ -163,7 +164,8 @@
                     //alert("type...:"+httpmethod +" prodCode:"+prodCode);
                     $.ajax({
                     type:httpmethod,
-                    dataType:"text",
+                    contentType:"application;charset=utf-8"
+                    dataType:"jsonp",
                     url:URI+'/'+domain,
                     data:{user_id:user_id, prodCode:prodCode},
                     success:function(data) {
@@ -323,7 +325,8 @@
              if(httpmethod == "GET"){
                   $.ajax({
                   type:httpmethod,
-                  dataType:"text",
+                  contentType:"application;charset=utf-8"
+                  dataType:"jsonp",
                   async: true,
                   url:URI+'/'+domain+'?user_id='+user_id,
 				  beforeSend:function(){
@@ -356,7 +359,8 @@
                   //alert("type...:"+httpmethod +" prodCode:"+prodCode);
                   $.ajax({
                   type:httpmethod,
-                  dataType:"text",
+                  contentType:"application;charset=utf-8"
+                  dataType:"jsonp",
                   url:URI+'/'+domain,
                   data:{user_id:user_id, prodCode:prodCode},
                   success:function(data) {

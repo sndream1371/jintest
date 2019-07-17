@@ -7,13 +7,14 @@
    src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 </script>
 
+
+
 <script type = "text/javascript" language = "javascript">
 
   function tcpMsgParse(){
     var inputTcplen = document.getElementById("tcplen").value;
     var inputTcpMsg = document.getElementById("tcpmsg").value;
     var jbSplit = inputTcplen.split('\n'); //textarea에서 입력한 개행문자 구분자
-
     var startIdx;
     var result = "";
 
@@ -22,15 +23,22 @@
       document.getElementById("outResult").innerHTML = jbSplit[i];
 
       if( i == 0){
-          startIdx = Number(jbSplit[i]);
-          result += jbSplit[i] + ": [" + inputTcpMsg.substr(i, jbSplit[i]) + "] <br>";
+          startIdx = Number(jbSplit[i]); //숫자형으로 형변환해야 계산이 가능함
+          result += jbSplit[i] + ": [" + inputTcpMsg.substr(i, jbSplit[i]) + "] <br>"; //javascript에서 substr과 substring의 차이가 있다.
           console.log("i :" + i + " jbSplit[i] : " + jbSplit[i]);
       }else{
           result += jbSplit[i] + ": [" + inputTcpMsg.substr(startIdx, jbSplit[i]) + "] <br>";
           startIdx += Number(jbSplit[i]);
           console.log("startIdx :" + startIdx + " startIdx : " + jbSplit[i]);
-
       }
+
+      console.log("startIdx :" + startIdx + " inputTcpMsg.length : " + inputTcpMsg.length);
+      if( startIdx == inputTcpMsg.length ){
+          document.getElementById("diffMsg").innerHTML = "입력전문과 전문길이 전체 합이 같음";
+      }else{
+          document.getElementById("diffMsg").innerHTML = "<b>입력전문과 전문길이 전체 합이 다름</b>";
+      }
+
     }
 
     document.getElementById("outResult").innerHTML = result;
@@ -44,16 +52,17 @@
     <th>소켓 전문 문서 Parsing</th>
     <tr>
         <td>
-          소켓 길이 (row형식으로 복사) <br>
-          <textarea id=tcplen rows=10 cols=20 wrap="virtual"></textarea>
+          소켓 길이 (Row형식으로 복사,엑셀에서 row를 복사해서 붙여넣거나 개행으로 입력하기) <br>
+          <textarea id=tcplen rows=10 cols=20 wrap="virtual" placeholder="ex) 1 \r 2 \r 3"></textarea>
 
           <button onclick="tcpMsgParse();">전문 파싱 처리</button>
+          <div id=diffMsg></div>
         </td>
     </tr>
     <tr>
         <td>
-           전문 <br>
-           <input id=tcpmsg type=text size=100> </input>
+           소켓 전문(TCP 전문을 입력해주세요) <br>
+           <input id=tcpmsg type=text size=100 placeholder="ex) 10230090990090"> </input>
         </td>
     </tr>
     <tr>

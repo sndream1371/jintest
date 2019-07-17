@@ -1,0 +1,71 @@
+<html>
+<head>
+    <title>소켓(TCP) 전문 자르기</title>
+</head>
+
+<script type = "text/javascript"
+   src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+
+<script type = "text/javascript" language = "javascript">
+
+  function tcpMsgParse(){
+    var inputTcplen = document.getElementById("tcplen").value;
+    var inputTcpMsg = document.getElementById("tcpmsg").value;
+    var jbSplit = inputTcplen.split('\n'); //textarea에서 입력한 개행문자 구분자
+
+    var startIdx;
+    var result = "";
+
+    for ( var i in jbSplit ) {
+      //document.write( '<p>' + jbSplit[i] + '</p>' );
+      document.getElementById("outResult").innerHTML = jbSplit[i];
+
+      if( i == 0){
+          startIdx = Number(jbSplit[i]);
+          result += jbSplit[i] + ": [" + inputTcpMsg.substr(i, jbSplit[i]) + "] <br>";
+          console.log("i :" + i + " jbSplit[i] : " + jbSplit[i]);
+      }else{
+          result += jbSplit[i] + ": [" + inputTcpMsg.substr(startIdx, jbSplit[i]) + "] <br>";
+          startIdx += Number(jbSplit[i]);
+          console.log("startIdx :" + startIdx + " startIdx : " + jbSplit[i]);
+
+      }
+    }
+
+    document.getElementById("outResult").innerHTML = result;
+  }
+
+</script>
+
+<body>
+
+  <table styple="width:300px">
+    <th>소켓 전문 문서 Parsing</th>
+    <tr>
+        <td>
+          소켓 길이 (row형식으로 복사) <br>
+          <textarea id=tcplen rows=10 cols=20 wrap="virtual"></textarea>
+
+          <button onclick="tcpMsgParse();">전문 파싱 처리</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+           전문 <br>
+           <input id=tcpmsg type=text size=100> </input>
+        </td>
+    </tr>
+    <tr>
+        <td>
+          Parsing된 결과 <br>
+          <div id=outResult>
+          </div>
+        </td>
+    </tr>
+  </<table>
+
+
+</body>
+
+</html>

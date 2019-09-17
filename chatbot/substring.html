@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to extract characters from the string.</p>
+
+<button onclick="myFunction()">Try it</button>
+<button onclick="noDashCtn('010012345678')">010012345678</button>
+<button onclick="noDashCtn('010033334444')">010033334444</button>
+<button onclick="noDashCtn('011099998888')">011099998888</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var str = "Hello world!";
+  var res = str.substring(1, 4);
+  document.getElementById("demo").innerHTML = res;
+}
+
+function noDashCtn(ctn){
+ var str1 = "";
+ var str2 = "";
+ var str3 = "";
+ var strtmp = "";
+ var tmp;
+ var checkskip = 0;
+
+ if( ctn.length < 11 ) return false;
+
+ str1 = ctn.substring(0,3);
+ str2 = ctn.substring(3, ctn.length - 4);
+ str3 = ctn.substring(ctn.length - 4, ctn.length);
+
+ for (var i = 0; i < str2.length; i++){
+ 	if( (tmp = str2.charAt(i)) == "0" && checkskip == 0 ) continue;
+    else{
+    	strtmp += tmp;
+        checkskip = 1;
+    }
+ }
+
+ //just print
+ document.getElementById("demo").innerHTML = str1 + strtmp + str3;
+
+ return str1 + strtmp + str3;
+
+}
+</script>
+
+</body>
+</html>

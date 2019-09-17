@@ -29,13 +29,14 @@ function noDashCtn(ctn){
  var tmp;
  var checkskip = 0;
 
- if( ctn.length < 11 ) return false;
+ if( ctn.length < 9 ) return false;
 
  str1 = ctn.substring(0,3);
  str2 = ctn.substring(3, ctn.length - 4);
  str3 = ctn.substring(ctn.length - 4, ctn.length);
 
  for (var i = 0; i < str2.length; i++){
+   //console.log( "str2 :"+str2.charAt(i) );
  	if( (tmp = str2.charAt(i)) == "0" && checkskip == 0 ) continue;
     else{
     	strtmp += tmp;

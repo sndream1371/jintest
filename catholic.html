@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html>
+
+<script>
+var bgm = new Audio('');
+if(!bgm.canPlayType('audio/mpeg')) alert('브라우저가 mp3 재생을 지원하지 않습니다.');
+else {
+        var bgm_url = 'http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3';
+        bgm = new Audio(bgm_url);
+        bgm.addEventListener('ended',function(){this.currentTime=0;this.play();},false);
+        bgm.play();
+}
+</script>
+  
 <body>
   주기도문
-<audio controls loop>
+<audio controls>
   아침기도:<source src="http://maria.catholic.or.kr/archives/Prayer/18/p_1_19.mp3" type="audio/mpeg">
 저녁기도:<source src="http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3" type="audio/mpeg">
 삼종기도:<source src="http://maria.catholic.or.kr/archives/Prayer/12/p_1_13.mp3" type="audio/mpeg">
@@ -12,5 +24,10 @@
 통회기도:<source src="http://maria.catholic.or.kr/archives/Prayer/9/p_1_09.mp3" type="audio/mpeg">
 십계명<source src="http://maria.catholic.or.kr/archives/Prayer/7/p_1_07.mp3" type="audio/mpeg">
 </audio>
+  
+
+<h1>음악 재생중 ( 반복 재생 )</h1>
+
+  
 </body>
 </html>

@@ -1,65 +1,128 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://www.collaboratescience.com/protoplasm/library/main.js"></script>
-</head>
+<title>Try jQuery Online</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("em").addClass("selected");
+    $("#myid").addClass("highlight");
+   
+    var index = 0;
+    var indexValue = 0;
+    var audioElements = document.getElementsByTagName('audio');
+    var jbAry = new Array();
+    
+    function playNext(index) {
+        indexValue = jbAry[index];
+        console.log("4) index :"+index+" indexValue :"+indexValue);
+        
+        audioElements[indexValue].play();
+        $(audioElements[indexValue]).bind("ended", function(){
+            index++;
+            console.log("5) index :"+index+" jbAry.length :"+jbAry.length);
+            if(index < jbAry.length){
+                playNext(index);          
+            }else{ //무한반복을위한 코드추가
+                index=0;
+                console.log("6) index :"+index+" jbAry.length:"+ jbAry.length);
+                playNext(index);
+            }
+        });
+    }
+    
 
+    $("#swig").click(function() {
+        
+        /* 전체 Checked Values */
+        var values = "";
+        var i=0;
+        $('input[type="checkbox"]:checked').each(function() {
+            values += $(this).val() + ", ";
+            jbAry[i] = $(this).val(); //순서대로 배열에 입력
+            i++;
+        });
+        
+        $("#myid").text(values);
+        
+        console.log("1) jbAry.length >"+jbAry.length);
+        if(jbAry.length > 0){ //체크박스 하나라도 선택한경우만
+            indexValue = jbAry[0];
+            audioElements[indexValue].play();
 
-
-<body>
-
-<audio class="my_audio" controls preload="none"></audio>
-
-<button onclick="play_audio('play')">PLAY</button>
-<button onclick="play_audio('stop')">STOP</button>
-
-</body>
-
-</html>
-
-<script>  
-
-playlist = {
-	'song_1' : 'http://maria.catholic.or.kr/archives/Prayer/18/p_1_19.mp3',
-	'song_2' : 'http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3',
-	'song_3' : 'http://maria.catholic.or.kr/archives/Prayer/12/p_1_13.mp3',
-	'song_4' : 'http://maria.catholic.or.kr/archives/Prayer/14/p_1_15.mp3',
-	'song_5' : 'http://maria.catholic.or.kr/archives/Prayer/15/p_1_16.mp3',
-	'song_6' : 'http://maria.catholic.or.kr/archives/Prayer/11/p_1_11.mp3',
-	'song_7' : 'http://maria.catholic.or.kr/archives/Prayer/9/p_1_09.mp3',
-	'song_8' : 'http://maria.catholic.or.kr/archives/Prayer/7/p_1_07.mp3'
-}
-
-$(".my_audio").trigger('load');
-
-function play_audio(task) {
-      if(task == 'play'){
-           $(".my_audio").trigger('play');
-      }
-      if(task == 'stop'){
-           $(".my_audio").trigger('pause');
-           $(".my_audio").prop("currentTime",0);
-      }
- }
-
-keys = Object.keys(playlist);
-$('.my_audio').append("<source id='sound_src' src=" + playlist[keys[0]] + " type='audio/mpeg'>");
+            console.log("2) indexValue >"+indexValue);
+            $(audioElements[indexValue]).bind("ended", function(){
+                index++;
+                indexValue = jbAry[index];
+                console.log("3) index :"+index+" indexValue :"+indexValue+ " jbAry.length :"+jbAry.length);
+                if(index < jbAry.length){
+                    playNext(index);          
+                }else{
+                    index=0;
+                    playNext(index);          
+                }
+            });
+        }
+        
+    });
+    
 
  
-count = 0; 
-$('.my_audio').on('ended', function() { 
-   count++;  
-   $("#sound_src").attr("src", playlist[keys[count]])[0];
-   $(".my_audio").trigger('load');
-   play_audio('play');
+
+
 });
 
-
 </script>
+<style>
+.selected { 
+    color:red; 
+}
+.highlight { 
+    background:yellow; 
+}
+</style>
+</head>
+<body>
+<em title="Bold and Brave">This is first paragraph.</em>
+<p id="myid">This is second paragraph.</p>
 
+<input type=button id=swig value="선택무한반복">
+<input type=button value="STOP">
 
+<br>
+<input type=checkbox value=0>
+<input type=checkbox value=1>
+<input type=checkbox value=2>
+<input type=checkbox value=3>
+<input type=checkbox value=4>
+<input type=checkbox value=5>
+<input type=checkbox value=6>
+<input type=checkbox value=7>
+<input type=checkbox value=8>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/18/p_1_19.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/12/p_1_13.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/14/p_1_15.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/15/p_1_16.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/11/p_1_11.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/9/p_1_09.mp3" type="audio/mpeg">
+</audio>
+<audio controls>
+  <source src="http://maria.catholic.or.kr/archives/Prayer/7/p_1_07.mp3" type="audio/mpeg">
+</audio>
 
-
-
+</body>
+</html>

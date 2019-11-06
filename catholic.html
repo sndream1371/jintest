@@ -2,8 +2,79 @@
 <html lang="ko">
 	<head>
 		<meta charset="utf-8">
-		<title>CSS</title>
+		<title>기도문반복듣기</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+        <script> 
+        $(function() { 
+            var audioIdx = 0; 
+            var audioChkVal = 0;
+            var chkArr = new Array();
+            
+            //Play All 버튼 눌렸을 때 
+            $("#playBtn").click(function(){ 
+                
+                /* 전체 Checked Values */
+                var i=0;
+                $('input[type="checkbox"]:checked').each(function() {
+                    chkArr[i] = $(this).val(); //순서대로 배열에 입력
+                    i++;
+                });
+                audioChkVal = chkArr[audioIdx]; //체크된 첫번째 value
+                    
+                var state = $(this).attr("state") 
+                if(state == "off"){ 
+                    $("#playBtn").text("Pause").attr("state","on") 
+                    $('audio')[audioChkVal].play() 
+                    console.log("audio play......:"+audioChkVal);
+                }else{ 
+                    var currentAudioChkVal = chkArr[audioIdx];
+                    $("#playBtn").text("선택 재생").attr("state","off") 
+                    $('audio')[audioChkVal].pause() 
+                    console.log("audio pause......:"+audioChkVal);
+                } 
+            }); 
+            
+            //오디오 시작시 
+            $('audio').on('playing', function() { 
+                $(this).addClass("active"); 
+                console.log("add class--------");
+            }); 
+            
+            //오디오 종료시 
+            $('audio').on('ended', function() { 
+                //전체 오디오 갯수 구함 
+                //var audioCount = $('audio').length; 
+                
+                //체크된 오디오 개수 구함
+                var audioCount = chkArr.length; 
+                
+                //다음 오디오 index를 구하여 마지막 오디오 인덱스보다 클경우
+                //(현재 재생 종료된게 마지막 오디오 일경우) 
+                //다시 처음 오디오로 
+                if(++audioIdx > audioCount-1){
+                    audioIdx = 0; 
+                    audioChkVal = chkArr[0];
+                    console.log("1..audioIdx :"+audioIdx);
+                }else{
+                    audioChkVal = chkArr[audioIdx];
+                    console.log("2..audioIdx :"+audioIdx);
+                }
+                
+                //active 클래스 제거 
+                $(this).removeClass("active"); 
+                console.log("remove class......");
+                
+                //다음 오디오 재생 
+                $('audio')[audioChkVal].play(); 
+                console.log("next audio play......:"+audioChkVal);
+            }); 
+        }); 
+        </script> 
 		<style>
+    		.active{ 
+                background-color: #000000; 
+            } 
+
               table {
                 width: 100%;
                 border-top: 1px solid #444444;
@@ -12,7 +83,7 @@
               th, td {
                 border-bottom: 1px solid #444444;
                 padding: 10px;
-                text-align: center;
+                text-align: left; //center;
                 font: size 30px ;
               }
               thead tr {
@@ -38,7 +109,11 @@
 		<div>
 			<table>
 				<tr>
-					<th colspan=3><input type=checkbox value=0 class=lagerchk></th>
+					<th colspan=3>
+					    <button id="playBtn" state="off">선택 재생</button>
+					    &nbsp; &nbsp; 
+					    <input type="button" value="새로고침" onClick="window.location.reload()">
+					</th>
 									
 				</tr>			    
 				<tr>

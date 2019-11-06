@@ -1,137 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Try jQuery Online</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    $("em").addClass("selected");
-    $("#myid").addClass("highlight");
-   
-    var index = 0;
-    var indexValue = 0;
-    var audioElements = document.getElementsByTagName('audio');
-    var jbAry = new Array();
-    
-    function playNext(index) {
-        indexValue = jbAry[index];
-        console.log("4) index :"+index+" indexValue :"+indexValue);
-        
-        audioElements[indexValue].play();
-        $(audioElements[indexValue]).bind("ended", function(){
-            index++;
-            console.log("5) index :"+index+" jbAry.length :"+jbAry.length);
-            if(index < jbAry.length){
-                playNext(index);          
-            }else{ //무한반복을위한 코드추가
-                index=0;
-                console.log("6) index :"+index+" jbAry.length:"+ jbAry.length);
-                playNext(index);
-            }
-        });
-    }
-    
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS</title>
+		<style>
+			table {
+				width: 100%;
+			}
+			td {
+				padding: 20px;
+				border: 1px solid #444444;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<table>
+				<tr>
+					
+					<td><input type=checkbox value=0></td>
+					<td>아침기도</td>
+					<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/18/p_1_19.mp3" type="audio/mpeg">
+						</audio>
+					</td>					
 
-    $("#swig").click(function() {
-        
-        /* 전체 Checked Values */
-        var values = "";
-        var i=0;
-        $('input[type="checkbox"]:checked').each(function() {
-            values += $(this).val() + ", ";
-            jbAry[i] = $(this).val(); //순서대로 배열에 입력
-            i++;
-        });
-        
-        $("#myid").text(values);
-        
-        console.log("1) jbAry.length >"+jbAry.length);
-        if(jbAry.length > 0){ //체크박스 하나라도 선택한경우만
-            indexValue = jbAry[0];
-            audioElements[indexValue].play();
-
-            console.log("2) indexValue >"+indexValue);
-            $(audioElements[indexValue]).bind("ended", function(){
-                index++;
-                indexValue = jbAry[index];
-                console.log("3) index :"+index+" indexValue :"+indexValue+ " jbAry.length :"+jbAry.length);
-                if(index < jbAry.length){
-                    playNext(index);          
-                }else{
-                    index=0;
-                    playNext(index);          
-                }
-            });
-        }
-        
-    });
-    
-
- 
-
-
-});
-
-</script>
-<style>
-.selected { 
-    color:red; 
-}
-.highlight { 
-    background:yellow; 
-}
-</style>
-</head>
-<body>
-<em title="Bold and Brave">This is first paragraph.</em>
-<p id="myid">This is second paragraph.</p>
-
-<input type=button id=swig value="선택무한반복">
-<input type=button value="STOP">
-
-<br>
-<input type=checkbox value=0>
-<input type=checkbox value=1>
-<input type=checkbox value=2>
-<input type=checkbox value=3>
-<input type=checkbox value=4>
-<input type=checkbox value=5>
-<input type=checkbox value=6>
-<input type=checkbox value=7>
-<input type=checkbox value=8>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/18/p_1_19.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/12/p_1_13.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/14/p_1_15.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/15/p_1_16.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/11/p_1_11.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/9/p_1_09.mp3" type="audio/mpeg">
-</audio>
-    <br>
-<audio controls>
-  <source src="http://maria.catholic.or.kr/archives/Prayer/7/p_1_07.mp3" type="audio/mpeg">
-</audio>
-    <br>
-
-</body>
+				</tr>
+				<tr>
+					<td><input type=checkbox value=1></td>					
+					<td>저녁기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/19/p_1_20.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
 </html>

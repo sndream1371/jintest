@@ -23,12 +23,12 @@
                     
                 var state = $(this).attr("state") 
                 if(state == "off"){ 
-                    $("#playBtn").text("Pause").attr("state","on") 
+                    $("#playBtn").text("|| Pause").attr("state","on") 
                     $('audio')[audioChkVal].play() 
                     console.log("audio play......:"+audioChkVal);
                 }else{ 
                     var currentAudioChkVal = chkArr[audioIdx];
-                    $("#playBtn").text("선택 재생").attr("state","off") 
+                    $("#playBtn").text("▶ 선택 재생").attr("state","off") 
                     $('audio')[audioChkVal].pause() 
                     console.log("audio pause......:"+audioChkVal);
                 } 
@@ -123,9 +123,10 @@
 			<table>
 				<tr>
 					<th colspan=3>
-					    <button id="playBtn" state="off" class="button">선택 재생</button>
+					    <button id="playBtn" state="off" class="button">▶ 선택 재생</button>
 					    &nbsp; &nbsp; 
 					    <button onClick="window.location.reload()" class="button">새로고침</button>
+					    &nbsp; &nbsp; -동백성요셉성당 교리반-
 					</th>
 									
 				</tr>			    

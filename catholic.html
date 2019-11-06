@@ -84,7 +84,7 @@
                 border-bottom: 1px solid #444444;
                 padding: 10px;
                 text-align: left; //center;
-                font: size 30px ;
+                font-size: 150% ;
               }
               thead tr {
                 background-color: #0d47a1;
@@ -102,7 +102,20 @@
                 height: 60px; 
             } 
             
-            audio { width: 300px; display: block; margin:20px; }
+            audio { width: 450px;  display: block; margin:10px; font-size:150%;}
+            
+            .button {
+              background-color: #990099;
+              border: none;
+              color: white;
+              padding: 20px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 30px;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
 		</style>
 	</head>
 	<body>
@@ -110,9 +123,9 @@
 			<table>
 				<tr>
 					<th colspan=3>
-					    <button id="playBtn" state="off">선택 재생</button>
+					    <button id="playBtn" state="off" class="button">선택 재생</button>
 					    &nbsp; &nbsp; 
-					    <input type="button" value="새로고침" onClick="window.location.reload()">
+					    <button onClick="window.location.reload()" class="button">새로고침</button>
 					</th>
 									
 				</tr>			    

@@ -5,6 +5,18 @@
 		<title>기도문반복듣기</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
         <script> 
+        $( document ).ready( function() {
+            var jbOffset = $( '.jbMenu' ).offset();
+            $( window ).scroll( function() {
+              if ( $( document ).scrollTop() > jbOffset.top ) {
+                $( '.jbMenu' ).addClass( 'jbFixed' );
+              }
+              else {
+                $( '.jbMenu' ).removeClass( 'jbFixed' );
+              }
+            });
+        });
+      
         $(function() { 
             var audioIdx = 0; 
             var audioChkVal = 0;
@@ -19,6 +31,7 @@
                     chkArr[i] = $(this).val(); //순서대로 배열에 입력
                     i++;
                 });
+                
                 audioChkVal = chkArr[audioIdx]; //체크된 첫번째 value
                     
                 var state = $(this).attr("state") 
@@ -71,6 +84,31 @@
         }); 
         </script> 
 		<style>
+            .jbMenu {
+                border-bottom: 1px solid #444444;
+                padding: 10px;
+                text-align: left; //center;
+                //background-color: #0d47a1;
+                //color: #ffffff;
+                width: 100%;
+            }
+            .jbFixed {
+                position: fixed;
+                top: 0px;
+            }	
+            
+            div{
+                position: relative;
+            }
+            
+            .infront{
+                z-index:2;
+            }
+            
+            .behind{
+                z-index:1;
+            }
+              
     		.active{ 
                 background-color: #000000; 
             } 
@@ -79,12 +117,14 @@
                 width: 100%;
                 border-top: 1px solid #444444;
                 border-collapse: collapse;
+                
               }
               th, td {
                 border-bottom: 1px solid #444444;
                 padding: 10px;
                 text-align: left; //center;
                 font-size: 270% ;
+                position: relative;
               }
               thead tr {
                 background-color: #0d47a1;
@@ -102,7 +142,7 @@
                 height: 70px; 
             } 
             
-            audio { width: 450px;  display: block; margin:10px; font-size:150%;}
+            audio { width: 450px;  display: block; margin:10px; font-size:150%; z-index:2;}
             
             .button {
               background-color: #990099;
@@ -119,17 +159,21 @@
 		</style>
 	</head>
 	<body>
-		<div>
-			<table>
+		<div class="infront">
+			<table class="jbMenu">
 				<tr>
-					<th colspan=3>
+					<th colspan=3 >
 					    <button id="playBtn" state="off" class="button">▶ 선택 재생</button>
 					    &nbsp; &nbsp; 
 					    <button onClick="window.location.reload()" class="button">새로고침</button>
 					    &nbsp;동백성요셉성당 교리반
 					</th>
 									
-				</tr>			    
+				</tr>
+			</table>
+		</div>
+		<div class="behind">
+			<table>
 				<tr>
 					<td><input type=checkbox value=0 class=lagerchk></td>
 					<td>아침기도</td>
@@ -237,6 +281,116 @@
 
 				<tr>
 					<td><input type=checkbox value=11 class=lagerchk></td>					
+					<td>주님의 기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/2/p_1_02.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=12 class=lagerchk></td>					
+					<td>성모송</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/3/p_1_03.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=13 class=lagerchk></td>					
+					<td>영광송</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/4/p_1_04.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=14 class=lagerchk></td>					
+					<td>니케아-콘스탄티노폴리스 신경</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/126/p_1_21_M.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=15 class=lagerchk></td>					
+					<td>반성기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/6/p_1_06.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=16 class=lagerchk></td>					
+					<td>고백기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/8/p_1_08.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=17 class=lagerchk></td>					
+					<td>삼덕송</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/10/p_1_10.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=18 class=lagerchk></td>					
+					<td>부활삼종기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/13/p_1_14.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=19 class=lagerchk></td>					
+					<td>구원기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/127/p_1_127.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=20 class=lagerchk></td>					
+					<td>일을시작하면바치는기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/16/p_1_17.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=21 class=lagerchk></td>					
+					<td>일을마치고바치는기도</td>
+    				<td>
+						<audio controls>
+						<source src="http://maria.catholic.or.kr/archives/Prayer/17/p_1_18.mp3" type="audio/mpeg">
+						</audio>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><input type=checkbox value=22 class=lagerchk></td>					
 					<td>자녀를위한기도</td>
     				<td>
 						<audio controls>
@@ -246,7 +400,7 @@
 				</tr>
 
 				<tr>
-					<td><input type=checkbox value=12 class=lagerchk></td>					
+					<td><input type=checkbox value=23 class=lagerchk></td>					
 					<td>부모를위한기도</td>
     				<td>
 						<audio controls>
@@ -256,7 +410,7 @@
 				</tr>
 
 				<tr>
-					<td><input type=checkbox value=13 class=lagerchk></td>					
+					<td><input type=checkbox value=24 class=lagerchk></td>					
 					<td>부부의기도</td>
     				<td>
 						<audio controls>
@@ -266,7 +420,7 @@
 				</tr>
 
 				<tr>
-					<td><input type=checkbox value=14 class=lagerchk></td>					
+					<td><input type=checkbox value=25 class=lagerchk></td>					
 					<td>병자를위한기도</td>
     				<td>
 						<audio controls>
@@ -276,7 +430,7 @@
 				</tr>
 
 				<tr>
-					<td><input type=checkbox value=15 class=lagerchk></td>					
+					<td><input type=checkbox value=26 class=lagerchk></td>					
 					<td>가정을위한기도1</td>
     				<td>
 						<audio controls>
@@ -286,7 +440,7 @@
 				</tr>
 
 				<tr>
-					<td><input type=checkbox value=16 class=lagerchk></td>					
+					<td><input type=checkbox value=27 class=lagerchk></td>					
 					<td>가정을위한기도2</td>
     				<td>
 						<audio controls>

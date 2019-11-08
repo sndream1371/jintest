@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="ko">
 	<head>
 		<meta charset="utf-8">
@@ -32,6 +31,11 @@
                     chkArr[i] = $(this).val(); //순서대로 배열에 입력
                     i++;
                 });
+                
+                if(i == 0 ){
+                    alert("기도서를 선택해주세요");
+                    return;
+                }
                 audioChkVal = chkArr[audioIdx]; //체크된 첫번째 value
                     
                 var state = $(this).attr("state") 

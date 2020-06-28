@@ -11,6 +11,7 @@ childwin = window.open('Page2.html', childname, 'height=300px, width=500px');
   
 }
 function sendMessage(){
+    openChild();
     let msg={pName : "Bob", pAge: "35"};
     // In production, DO NOT use '*', use toe target domain
     childwin.postMessage(msg,'*')// childwin is the targetWindow
